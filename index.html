@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Noor Aesthetic - By Muhammad Kashan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FF69B4">
+  <link rel="manifest" href="data:application/manifest+json,{
+    %22name%22:%22Noor%20Aesthetic%22,
+    %22short_name%22:%22NoorAesthetic%22,
+    %22start_url%22:%22.%22,
+    %22display%22:%22standalone%22,
+    %22background_color%22:%22%231a0a1a%22,
+    %22theme_color%22:%22%23FF69B4%22,
+    %22icons%22:[{%22src%22:%22https://i.imgur.com/4QjQ6Yj.png%22,%22sizes%22:%22192x192%22,%22type%22:%22image/png%22}]
+  }">
+  <!-- ADSENSE - APNA CODE DAAL = INCOME -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+    body { background: linear-gradient(135deg, #1a0a1a, #2d1b2d, #000000); color: #fff; padding: 15px; text-align: center; min-height: 100vh; }
+.header h1 { color: #FF69B4; font-size: 32px; margin: 15px 0 5px 0; }
+.header p { color: #ffb3d9; margin-bottom: 20px; font-size: 14px; }
+    select, input { width: 100%; padding: 16px; margin: 10px 0; background: rgba(255,105,180,0.1); border: 2px solid #FF69B4; border-radius: 20px; color: #fff; font-size: 16px; }
+.btn { background: linear-gradient(45deg, #FF69B4, #FF1493); color: #fff; border: none; padding: 18px; border-radius: 20px; font-weight: bold; font-size: 18px; width: 100%; margin-top: 15px; box-shadow: 0 0 20px rgba(255,105,180,0.5); }
+    #result { margin-top: 25px; display: none; }
+   .aesthetic-box { background: rgba(255,105,180,0.1); border: 2px solid #FF69B4; border-radius: 25px; padding: 30px 20px; margin: 20px 0; backdrop-filter: blur(10px); }
+   .mood-title { font-size: 24px; color: #FFB6C1; margin-bottom: 15px; }
+   .quote-text { font-size: 20px; line-height: 1.8; color: #fff; font-style: italic; margin: 20px 0; }
+   .wallpaper { width: 100%; border-radius: 15px; margin: 15px 0; border: 2px solid #FF69B4; }
+   .copy-btn { background: #25D366; margin-top: 10px; }
+   .pro-btn { background: #FFD700; color: #000; }
+.ad-box { margin: 20px 0; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 15px; }
+.watermark { color: #ff8dc7; font-size: 12px; margin-top: 25px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>✨ NOOR AESTHETIC ✨</h1>
+    <p>Daily Vibe + Quotes + Wallpapers<br>By @kashan_badshah</p>
+  </div>
+
+  <!-- GOOGLE AD -->
+  <div class="ad-box">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <input type="text" id="userName" placeholder="Apna naam: Ayesha" maxlength="12">
+  <select id="mood">
+    <option value="">Aaj ka Mood Kya Hai? 🎭</option>
+    <option value="sad">🥀 Sad Girl Era</option>
+    <option value="healing">🌸 Healing Era</option>
+    <option value="main">👑 Main Character Energy</option>
+    <option value="soft">🦋 Soft Girl Vibes</option>
+    <option value="savage">💅 Savage Queen</option>
+    <option value="moon">🌙 Moonchild</option>
+  </select>
+  <button class="btn" onclick="makeAesthetic()">✨ Vibe Generate Karo</button>
+
+  <div id="result">
+    <div class="aesthetic-box">
+      <div class="mood-title" id="moodTitle"></div>
+      <img class="wallpaper" id="wallpaperImg" src="">
+      <div class="quote-text" id="quoteText"></div>
+    </div>
+    <button class="btn copy-btn" onclick="downloadVibe()">📸 Screenshot Le Ke Story Lagao</button>
+    <button class="btn pro-btn" onclick="buyPro()">💎 Pro 99 Rs - HD + 50 Moods</button>
+    <p class="watermark" id="wm">@kashan_badshah</p>
+  </div>
+
+  <script>
+    let isPro = false;
+    const vibes = {
+      sad: {
+        title: "🥀 Sad Girl Era",
+        quotes: [
+          "NAME: Smiling on outside, screaming on inside 💔\nBut make it aesthetic ✨",
+          "NAME is not okay but her playlist is 🔥\n3 AM thoughts hit different 🌙",
+          "NAME: Broken but still beautiful 🦋\nTears look good on me 😭✨"
+        ],
+        wallpapers: [
+          "https://i.imgur.com/sad1.jpg",
+          "https://i.imgur.com/sad2.jpg",
+          "https://i.imgur.com/sad3.jpg"
+        ]
+      },
+      healing: {
+        title: "🌸 Healing Era",
+        quotes: [
+          "NAME is healing in silence 🌿\nGrowing, glowing, letting go ✨",
+          "NAME: One day at a time 💗\nMy peace is my priority 🕊️",
+          "NAME chose herself this time 🌸\nNo more toxic, only magic ✨"
+        ],
+        wallpapers: [
+          "https://i.imgur.com/heal1.jpg",
+          "https://i.imgur.com/heal2.jpg",
+          "https://i.imgur.com/heal3.jpg"
+        ]
+      },
+      main: {
+        title: "👑 Main Character Energy",
+        quotes: [
+          "NAME doesn't chase, she attracts 💫\nPlot twist: She's the prize 🏆",
+          "NAME: Living my movie 🎬\nSide characters keep watching 👀",
+          "NAME walked in, the vibe changed ⚡\nMain character, no extras ✨"
+        ],
+        wallpapers: [
+          "https://i.imgur.com/main1.jpg",
+          "https://i.imgur.com/main2.jpg",
+          "https://i.imgur.com/main3.jpg"
+        ]
+      },
+      soft: {
+        title: "🦋 Soft Girl Vibes",
+        quotes: [
+          "NAME: Soft heart, sharp mind 🎀\nKind but not weak 💗",
+          "NAME believes in pink skies & second chances 🌸\nDelicate like a flower, strong like a storm 🌪️",
+          "NAME: Made of sugar, spice & boundaries ✨\nGentle but dangerous 🦋"
+        ],
+        wallpapers: [
+          "https://i.imgur.com/soft1.jpg",
+          "https://i.imgur.com/soft2.jpg",
+          "https://i.imgur.com/soft3.jpg"
+        ]
+      },
+      savage: {
+        title: "💅 Savage Queen",
+        quotes: [
+          "NAME: Sweet but psycho 💣\nMess with me? Good luck 😈",
+          "NAME doesn't do drama, she is the drama 🔥\nCatch me if you can, I'm the queen 👑",
+          "NAME: Too glam to give a damn 💎\nYour opinion = Not my problem 💅"
+        ],
+        wallpapers: [
+          "https://i.imgur.com/sav1.jpg",
+          "https://i.imgur.com/sav2.jpg",
+          "https://i.imgur.com/sav3.jpg"
+        ]
+      },
+      moon: {
+        title: "🌙 Moonchild",
+        quotes: [
+          "NAME is made of stardust & moonbeams ✨\nDancing with the moon at 3 AM 🌙",
+          "NAME: Wild like the moon, soft like the night 🌌\nHer soul is nocturnal 🦉",
+          "NAME talks to the moon 🌙\nAnd the moon listens ✨"
+        ],
+        wallpapers: [
+          "https://i.imgur.com/moon1.jpg",
+          "https://i.imgur.com/moon2.jpg",
+          "https://i.imgur.com/moon3.jpg"
+        ]
+      }
+    };
+
+    function makeAesthetic() {
+      const name = document.getElementById('userName').value.trim() || "Girl";
+      const mood = document.getElementById('mood').value;
+      if (!mood) return alert('Badshah! Mood select karo 👸');
+
+      const vibe = vibes;
+      const randomQuote = vibe.quotes[Math.floor(Math.random() * vibe.quotes.length)];
+      const randomWallpaper = vibe.wallpapers[Math.floor(Math.random() * vibe.wallpapers.length)];
+      
+      let finalQuote = randomQuote.replace(/NAME/g, name);
+      if (!isPro) finalQuote += "\n\n@kashan_badshah";
+
+      document.getElementById('moodTitle').innerText = vibe.title;
+      document.getElementById('quoteText').innerText = finalQuote;
+      document.getElementById('wallpaperImg').src = randomWallpaper;
+      document.getElementById('result').style.display = 'block';
+      
+      if (isPro) document.getElementById('wm').style.display = 'none';
+      document.getElementById('result').scrollIntoView({behavior: 'smooth'});
+    }
+
+    function downloadVibe() {
+      alert('Badshah! Screenshot le lo 📸\n\nInsta Story pe lagao + "Same vibe?" likho\n@kashan_badshah ko tag karna 💖\n\nPro users ko HD Wallpapers milte hain!');
+    }
+
+    function buyPro() {
+      alert('Pro lene ke liye @kashan_badshah ko DM karo\n\nUPI: kashan@paytm\n99 Rs = Lifetime Pro 👑\n\nPro Features:\n✅ 50+ Moods\n✅ HD Wallpapers\n✅ No Watermark\n✅ Daily New Quotes');
+      isPro = true;
+      alert('Demo: Pro activate! Ab 50 moods unlock 🔥');
+    }
+  </script>
+</body>
+</html>
