@@ -5,20 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Noor Aesthetic</title>
   <style>
-    body { background: #1a001a; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
-    h1 { color: #ff4dd2; }
-    input, select, button { width: 90%; padding: 15px; margin: 10px 0; border-radius: 25px; border: 2px solid #ff4dd2; background: #2d002d; color: white; font-size: 16px; }
-    button { background: linear-gradient(45deg, #ff4dd2, #4d79ff); border: none; font-weight: bold; cursor: pointer; }
-    #result { margin-top: 20px; padding: 20px; background: #2d002d; border-radius: 15px; min-height: 200px; display: none; }
+    body { background: linear-gradient(135deg, #1a001a, #2d002d); color: white; font-family: sans-serif; text-align: center; padding: 20px; margin: 0; min-height: 100vh; }
+    h1 { color: #ff4dd2; text-shadow: 0 0 10px #ff4dd2; }
+    input, select, button { width: 90%; padding: 15px; margin: 10px 0; border-radius: 25px; border: 2px solid #ff4dd2; background: rgba(45,0,45,0.8); color: white; font-size: 16px; }
+    button { background: linear-gradient(45deg, #ff4dd2, #4d79ff); border: none; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px #ff4dd2; }
+    button:active { transform: scale(0.95); }
+    #result { margin-top: 20px; padding: 20px; background: rgba(45,0,45,0.9); border-radius: 15px; min-height: 200px; display: none; backdrop-filter: blur(10px); }
+   .wallpaper-btn { background: linear-gradient(45deg, #4d79ff, #00ffcc); margin-top: 15px; }
+    #wallpaper { margin-top: 15px; border-radius: 15px; max-width: 100%; display: none; border: 3px solid #ff4dd2; }
   </style>
 </head>
 <body>
   <h1>✨ NOOR AESTHETIC ✨</h1>
   <p>Daily Vibe + Quotes + Wallpapers<br>By @kashan_badshah</p>
   
-  <div id="result"></div>
+  <div id="result">
+    <h2 id="vibeName"></h2>
+    <p id="vibeQuote" style="font-size:18px;"></p>
+    <button class="wallpaper-btn" onclick="downloadWallpaper()">📱 Wallpaper Download Karo</button>
+    <img id="wallpaper" alt="Your Vibe Wallpaper">
+  </div>
   
-  <input type="text" id="name" placeholder="Apna naam: Ayesha">
+  <input type="text" id="name" placeholder="Apna naam likho">
   
   <select id="mood">
     <option value="">Aaj ka Mood Kya Hai? 🎭</option>
@@ -26,33 +34,58 @@
     <option value="healing">Healing Era 🌸</option>
     <option value="main">Main Character Energy 👑</option>
     <option value="soft">Soft Girl Vibes 🦋</option>
+    <option value="dark">Dark Academia 📚</option>
+    <option value="love">Love Era 💕</option>
   </select>
   
   <button onclick="generateVibe()">✨ Vibe Generate Karo</button>
 
   <script>
     const vibes = {
-      sad: {quote: "Ayesha, aansu bhi khoobsurat hote hain jab woh dil se niklein.", color: "#4d0026"},
-      healing: {quote: "Ayesha, tu toot ke bhi chamakti hai. Healing tera superpower hai.", color: "#00264d"},
-      main: {quote: "Ayesha, duniya teri movie hai. Tu heroine hai, side character nahi.", color: "#4d004d"},
-      soft: {quote: "Ayesha, teri softness teri kamzori nahi, teri taqat hai.", color: "#331a00"}
+      sad: {
+        quote: ", aansu bhi khoobsurat hote hain jab woh dil se niklein.", 
+        color: "#4d0026", 
+        img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1080&fit=crop"
+      },
+      healing: {
+        quote: ", tu toot ke bhi chamakti hai. Healing tera superpower hai.", 
+        color: "#00264d", 
+        img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&fit=crop"
+      },
+      main: {
+        quote: ", duniya teri movie hai. Tu heroine hai, side character nahi.", 
+        color: "#4d004d", 
+        img: "https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=1080&fit=crop"
+      },
+      soft: {
+        quote: ", teri softness teri kamzori nahi, teri taqat hai.", 
+        color: "#331a00", 
+        img: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1080&fit=crop"
+      },
+      dark: {
+        quote: ", teri khamoshi me bhi ek kahani hai. Andhera bhi khoobsurat hota hai.", 
+        color: "#0d0d0d", 
+        img: "https://images.unsplash.com/photo-1505506874110-6a7a69069a08?w=1080&fit=crop"
+      },
+      love: {
+        quote: ", pyaar tujhse shuru hota hai. Pehle khud se pyaar kar.", 
+        color: "#4d0019", 
+        img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1080&fit=crop"
+      }
     };
     
     function generateVibe() {
-      const name = document.getElementById('name').value || 'Badshah';
+      const name = document.getElementById('name').value || 'Queen';
       const mood = document.getElementById('mood').value;
       const result = document.getElementById('result');
       
       if (!mood) {
-        alert('Pehle mood select kar Badshah!');
+        alert('Pehle mood select karo!');
         return;
       }
       
       const vibe = vibes[mood];
       result.style.display = 'block';
       result.style.background = vibe.color;
-      result.innerHTML = `<h2>${name.toUpperCase()}</h2><p style="font-size:18px;">${vibe.quote.replace('Ayesha', name)}</p>`;
-    }
-  </script>
-</body>
-</html>
+      document.getElementById('vibeName').innerText = name.toUpperCase();
+      document.getElementById('vibeQuote').innerText = name + vibe.quote;
